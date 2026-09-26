@@ -11,445 +11,442 @@
   <meta property="og:image" content="assets/preview.png">
   <title>Я тебя МОГНУ</title>
   <style>
-    :root { 
-      --pink:#ff3d9a; 
-      --violet:#7d4dff; 
+    :root {
+      --pink:#ff3d9a;
+      --violet:#7d4dff;
       --ink:#160d30;
-      --bg-light: radial-gradient(circle at 50% 20%,#4a267d 0,#180c38 48%,#090619 100%);
-      --bg-dark: #0a0a1a;
-      --text-light: #fff;
-      --text-dark: #1a1a2e;
-      --card-light: rgba(255,255,255,.08);
-      --card-dark: rgba(20,20,40,.7);
-      --border-light: rgba(255,255,255,.13);
-      --border-dark: rgba(255,61,154,.2);
+      --bg-1:#1c0d38;
+      --bg-2:#0b0717;
+      --bg-3:#120a25;
+      --text:#ffffff;
+      --text-soft:rgba(255,255,255,.72);
+      --card:rgba(255,255,255,.07);
+      --card-strong:rgba(22,13,48,.78);
+      --border:rgba(255,255,255,.14);
+      --shadow:rgba(0,0,0,.38);
+      --chip:rgba(255,255,255,.05);
+      --button-text:#fff;
+      --stat-bg:rgba(255,255,255,.06);
+      --hint: #ffd7ef;
+      --progress-bg: rgba(255,255,255,.12);
+      --muted: rgba(255,255,255,.54);
     }
-    
-    * { box-sizing:border-box; }
-    
-    body { 
-      margin:0; 
-      min-height:100vh; 
-      overflow-x:hidden; 
-      color:var(--text-light); 
-      font-family:Arial,sans-serif; 
-      background:var(--bg-light);
-      transition: background .3s, color .3s;
-    }
-    
+
     body.dark-theme {
-      background: var(--bg-dark);
-      color: var(--text-dark);
+      --bg-1:#100b1c;
+      --bg-2:#070611;
+      --bg-3:#140d25;
+      --text:#f6eefc;
+      --text-soft:rgba(246,238,252,.78);
+      --card:rgba(255,255,255,.04);
+      --card-strong:rgba(16,11,26,.88);
+      --border:rgba(255,255,255,.12);
+      --shadow:rgba(0,0,0,.48);
+      --chip:rgba(255,255,255,.05);
+      --button-text:#ffffff;
+      --stat-bg:rgba(255,255,255,.04);
+      --hint:#ffd3ef;
+      --progress-bg:rgba(255,255,255,.14);
+      --muted: rgba(255,255,255,.6);
     }
-    
-    body::before { 
-      content:'6 7'; 
-      position:fixed; 
-      inset:-10vh -5vw; 
-      display:grid; 
-      place-items:center; 
-      color:rgba(255,255,255,.035); 
-      font-size:clamp(180px,42vw,620px); 
-      font-weight:900; 
-      letter-spacing:-.12em; 
-      transform:rotate(-12deg); 
-      pointer-events:none; 
+
+    * { box-sizing:border-box; }
+
+    html, body {
+      margin:0;
+      min-height:100%;
+      overflow-x:hidden;
+      font-family:Arial, sans-serif;
+      background:radial-gradient(circle at 50% 18%, var(--bg-1) 0%, var(--bg-3) 38%, var(--bg-2) 100%);
+      color:var(--text);
+      transition:background .25s ease, color .25s ease;
     }
-    
-    body.dark-theme::before {
-      color: rgba(255,255,255,.08);
+
+    body::before {
+      content:'6 7';
+      position:fixed;
+      inset:-10vh -6vw;
+      display:grid;
+      place-items:center;
+      color:rgba(255,255,255,.035);
+      font-size:clamp(180px,40vw,620px);
+      font-weight:900;
+      letter-spacing:-.12em;
+      transform:rotate(-12deg);
+      pointer-events:none;
+      user-select:none;
     }
-    
-    .app { 
-      position:relative; 
-      width:min(100%,620px); 
-      min-height:100vh; 
-      margin:auto; 
-      padding:18px 16px 28px; 
+
+    .app {
+      position:relative;
+      width:min(100%, 620px);
+      min-height:100vh;
+      margin:0 auto;
+      padding:18px 16px 28px;
     }
-    
-    header { 
-      text-align:center; 
-      margin-bottom: 12px;
+
+    header {
+      position:relative;
+      z-index:1;
+      margin-bottom:12px;
     }
-    
+
     .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      min-height:48px;
     }
-    
-    h1 { 
-      margin:0; 
-      font-size:clamp(28px,7vw,44px); 
-      letter-spacing:.02em; 
-      text-shadow:0 0 24px rgba(255,61,154,.65);
+
+    h1 {
+      flex:1;
+      margin:0;
+      font-size:clamp(26px,6vw,42px);
+      line-height:1.1;
+      text-align:center;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      text-shadow:0 0 18px rgba(255,61,154,.55);
+      white-space:nowrap;
     }
-    
-    body.dark-theme h1 {
-      text-shadow: 0 0 16px rgba(255,61,154,.4);
-      color: #fff;
-    }
-    
-    .subtitle { 
-      opacity:.75; 
+
+    .subtitle {
+      text-align:center;
       font-size:13px;
+      opacity:.78;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin-top:4px;
     }
-    
+
     .theme-toggle {
-      font-size:24px;
+      width:40px;
+      height:40px;
+      border:none;
+      border-radius:50%;
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      font-size:20px;
       cursor:pointer;
-      transition: transform .2s;
-      background: none;
-      border: none;
-      padding: 0;
+      transition:transform .2s ease, background .2s ease;
+      box-shadow:0 6px 18px rgba(0,0,0,.2);
+      flex-shrink:0;
     }
-    
+
     .theme-toggle:hover {
-      transform: scale(1.15);
+      transform:translateY(-1px) scale(1.04);
+      background:rgba(255,255,255,.12);
     }
-    
-    .stats { 
-      display:flex; 
-      gap:10px; 
-      justify-content:center; 
-      margin:18px 0 8px; 
+
+    .stats {
+      position:relative;
+      z-index:1;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      margin:18px 0 8px;
       flex-wrap:wrap;
     }
-    
-    .stat { 
-      min-width:105px; 
-      padding:10px 14px; 
-      border:1px solid var(--border-light); 
-      border-radius:16px; 
-      background:var(--card-light); 
-      text-align:center; 
+
+    .stat {
+      min-width:102px;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:var(--stat-bg);
+      text-align:center;
       backdrop-filter:blur(10px);
+      box-shadow:0 8px 20px rgba(0,0,0,.12);
     }
-    
-    body.dark-theme .stat {
-      background: var(--card-dark);
-      border-color: var(--border-dark);
+
+    .stat small {
+      display:block;
+      opacity:.72;
+      font-size:10px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:4px;
     }
-    
-    .stat small { 
-      display:block; 
-      opacity:.7; 
-      font-size:10px; 
-      text-transform:uppercase; 
-      letter-spacing:.08em; 
+
+    .stat strong {
+      display:block;
+      font-size:22px;
+      line-height:1.1;
+      font-weight:800;
     }
-    
-    .stat strong { 
-      font-size:22px; 
+
+    .hero {
+      position:relative;
+      z-index:1;
+      min-height:390px;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      touch-action:manipulation;
+      user-select:none;
     }
-    
-    .hero { 
-      position:relative; 
-      min-height:405px; 
-      display:grid; 
-      place-items:center; 
-      cursor:pointer; 
-      touch-action:manipulation; 
-      user-select:none; 
-    }
-    
-    .hero::before { 
-      content:'6–7'; 
-      position:absolute; 
-      z-index:-1; 
-      font-size:clamp(170px,48vw,300px); 
-      font-weight:900; 
-      color:rgba(255,255,255,.07); 
-      letter-spacing:-.15em; 
+
+    .hero::before {
+      content:'6–7';
+      position:absolute;
+      z-index:-1;
+      font-size:clamp(170px,48vw,300px);
+      font-weight:900;
+      color:rgba(255,255,255,.07);
+      letter-spacing:-.15em;
       transform:rotate(-8deg);
     }
-    
-    body.dark-theme .hero::before {
-      color: rgba(255,255,255,.12);
+
+    .character {
+      width:min(78vw,250px);
+      height:340px;
+      object-fit:contain;
+      filter:drop-shadow(0 15px 26px rgba(0,0,0,.44));
+      transition:transform .08s ease, filter .2s ease;
     }
-    
-    .character { 
-      width:min(78vw,250px); 
-      height:340px; 
-      object-fit:contain; 
-      filter:drop-shadow(0 15px 24px rgba(0,0,0,.5)); 
-      transition:transform .08s;
+
+    .hero.pressed .character {
+      transform:scale(.96) rotate(-1deg);
+      filter:drop-shadow(0 12px 20px rgba(255,61,154,.35));
     }
-    
-    .hero.pressed .character { 
-      transform:scale(.96) rotate(-1deg); 
-    }
-    
-    .hint { 
-      margin-top:-14px; 
-      font-weight:700; 
-      color:#ffd3ed; 
+
+    .hint {
+      margin-top:-14px;
+      font-weight:700;
+      color:var(--hint);
       text-shadow:0 0 12px var(--pink);
+      font-size:14px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
-    
-    body.dark-theme .hint {
-      color: #ff69b4;
-    }
-    
-    #particles { 
-      position:fixed; 
-      inset:0; 
-      pointer-events:none; 
-      overflow:hidden; 
-    }
-    
-    .particle { 
-      position:absolute; 
-      font-weight:900; 
-      color:#ffd3ed; 
-      animation:fly .75s ease-out forwards; 
-      text-shadow:0 0 10px var(--pink);
-    }
-    
-    @keyframes fly { 
-      to { 
-        opacity:0; 
-        transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(.35); 
-      } 
-    }
-    
-    .progress-wrap { 
-      margin:4px 0 18px; 
-    }
-    
-    .progress-label { 
-      display:flex; 
-      justify-content:space-between; 
-      font-size:12px; 
-      opacity:.8; 
-      margin-bottom:6px; 
-    }
-    
-    .progress { 
-      height:10px; 
-      border-radius:99px; 
-      background:rgba(255,255,255,.13); 
+
+    #particles {
+      position:fixed;
+      inset:0;
+      pointer-events:none;
       overflow:hidden;
+      z-index:20;
     }
-    
-    body.dark-theme .progress {
-      background: rgba(255,255,255,.2);
+
+    .particle {
+      position:absolute;
+      font-weight:900;
+      color:#ffd3ed;
+      animation:fly .75s ease-out forwards;
+      text-shadow:0 0 10px var(--pink);
+      user-select:none;
     }
-    
-    .progress i { 
-      display:block; 
-      height:100%; 
-      width:0; 
-      border-radius:inherit; 
-      background:linear-gradient(90deg,var(--violet),var(--pink)); 
-      transition:width .25s; 
+
+    @keyframes fly {
+      to {
+        opacity:0;
+        transform:translate(var(--x), var(--y)) rotate(var(--r)) scale(.35);
+      }
     }
-    
-    .upgrades { 
-      padding:15px; 
-      border-radius:20px; 
-      background:var(--card-light); 
-      border:1px solid var(--border-light); 
-      margin-bottom:12px;
+
+    .progress-wrap {
+      position:relative;
+      z-index:1;
+      margin:4px 0 18px;
     }
-    
-    body.dark-theme .upgrades {
-      background: var(--card-dark);
-      border-color: var(--border-dark);
-    }
-    
-    .upgrades h2 { 
-      margin:0 0 12px; 
-      font-size:18px; 
-    }
-    
-    .upgrade-list { 
-      display:grid; 
-      grid-template-columns:1fr 1fr; 
-      gap:9px; 
-    }
-    
-    .upgrade-item { 
-      border:1px solid rgba(255,255,255,.18); 
-      background:rgba(16,9,39,.6); 
-      color:#fff; 
-      border-radius:13px; 
-      padding:11px; 
-      text-align:left; 
-      cursor:pointer; 
-      transition:all .2s;
-    }
-    
-    body.dark-theme .upgrade-item {
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,61,154,.3);
-      color: #fff;
-    }
-    
-    .upgrade-item:hover:not(:disabled) { 
-      border-color:var(--pink); 
-      background:rgba(255,61,154,.15);
-    }
-    
-    .upgrade-item:disabled { 
-      opacity:.4; 
-      cursor:not-allowed; 
-    }
-    
-    .upgrade-name { 
-      font-weight:700; 
-      font-size:13px; 
-    }
-    
-    .upgrade-desc { 
-      min-height:29px; 
-      margin:4px 0; 
-      opacity:.68; 
-      font-size:11px; 
-    }
-    
-    .upgrade-cost { 
-      color:#ffd0eb; 
+
+    .progress-label {
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
       font-size:12px;
+      opacity:.8;
+      margin-bottom:6px;
     }
-    
-    body.dark-theme .upgrade-cost {
-      color: #ff69b4;
+
+    .progress {
+      height:10px;
+      border-radius:99px;
+      background:var(--progress-bg);
+      overflow:hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
     }
-    
-    .achievements-section { 
-      padding:15px; 
-      border-radius:20px; 
-      background:var(--card-light); 
-      border:1px solid var(--border-light); 
+
+    .progress i {
+      display:block;
+      height:100%;
+      width:0;
+      border-radius:inherit;
+      background:linear-gradient(90deg,var(--violet),var(--pink));
+      transition:width .25s ease;
+    }
+
+    .btn-group {
+      position:relative;
+      z-index:1;
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      flex-wrap:wrap;
       margin-bottom:12px;
     }
-    
-    body.dark-theme .achievements-section {
-      background: var(--card-dark);
-      border-color: var(--border-dark);
+
+    .btn {
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.08);
+      color:var(--button-text);
+      border-radius:10px;
+      padding:8px 12px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.04em;
+      cursor:pointer;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
     }
-    
-    .achievements-section h3 { 
-      margin:0 0 12px; 
-      font-size:16px; 
+
+    .btn:hover {
+      transform:translateY(-1px);
+      border-color: rgba(255,61,154,.8);
+      background: rgba(255,61,154,.12);
     }
-    
-    .achievement-list { 
-      display:grid; 
-      grid-template-columns:repeat(4,1fr); 
-      gap:8px; 
+
+    .upgrades,
+    .achievements-section {
+      position:relative;
+      z-index:1;
+      padding:15px;
+      border-radius:20px;
+      background:var(--card);
+      border:1px solid var(--border);
+      box-shadow:0 12px 24px rgba(0,0,0,.12);
+      margin-bottom:12px;
     }
-    
-    .achievement { 
-      width:60px; 
-      height:60px; 
-      border-radius:10px; 
-      background:rgba(255,255,255,.1); 
-      border:1px solid rgba(255,255,255,.2); 
-      display:flex; 
-      align-items:center; 
-      justify-content:center; 
-      font-size:24px; 
-      cursor:help; 
-      transition:all .2s;
+
+    .upgrades h2,
+    .achievements-section h3 {
+      margin:0 0 12px;
+      font-size:18px;
+      letter-spacing:.04em;
     }
-    
-    body.dark-theme .achievement {
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,61,154,.2);
+
+    .upgrade-list {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:9px;
     }
-    
-    .achievement.unlocked { 
-      background:rgba(255,61,154,.25); 
+
+    .upgrade-item {
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(16,9,39,.6);
+      color:#fff;
+      border-radius:13px;
+      padding:11px;
+      text-align:left;
+      cursor:pointer;
+      transition:all .2s ease;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+
+    .upgrade-item:hover:not(:disabled) {
       border-color:var(--pink);
+      background:rgba(255,61,154,.14);
+      transform:translateY(-1px);
     }
-    
-    body.dark-theme .achievement.unlocked {
-      background: rgba(255,61,154,.35);
-      border-color: var(--pink);
+
+    .upgrade-item:disabled {
+      opacity:.42;
+      cursor:not-allowed;
     }
-    
-    .achievement:hover { 
+
+    .upgrade-name {
+      font-weight:700;
+      font-size:13px;
+    }
+
+    .upgrade-desc {
+      min-height:29px;
+      margin:4px 0;
+      opacity:.68;
+      font-size:11px;
+      line-height:1.35;
+    }
+
+    .upgrade-cost {
+      color:#ffd0eb;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .achievement-list {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+    }
+
+    .achievement {
+      width:60px;
+      height:60px;
+      border-radius:10px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.2);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      cursor:help;
+      transition:all .2s ease;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+
+    .achievement.unlocked {
+      background:rgba(255,61,154,.22);
+      border-color:var(--pink);
+      box-shadow:0 0 16px rgba(255,61,154,.18);
+    }
+
+    .achievement:hover {
       transform:scale(1.08);
     }
-    
-    .footer { 
-      text-align:center; 
-      font-size:11px; 
-      opacity:.5;
+
+    .footer {
+      position:relative;
+      z-index:1;
+      text-align:center;
+      font-size:11px;
+      opacity:.55;
+      letter-spacing:.04em;
+      margin-top:12px;
     }
-    
-    .btn-group { 
-      display:flex; 
-      gap:8px; 
-      justify-content:center; 
-      margin-bottom:12px;
-    }
-    
-    .btn { 
-      padding:8px 14px; 
-      border:1px solid rgba(255,255,255,.2); 
-      background:rgba(255,255,255,.08); 
-      color:#fff; 
-      border-radius:8px; 
-      font-size:11px; 
-      cursor:pointer; 
-      transition:all .2s;
-    }
-    
-    body.dark-theme .btn {
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,61,154,.3);
-      color: #fff;
-    }
-    
-    .btn:hover { 
-      background:rgba(255,61,154,.2); 
-      border-color:var(--pink);
-    }
-    
-    @media(max-width:430px){ 
+
+    @media(max-width:430px){
       .hero{min-height:350px}
       .character{height:290px}
       .upgrade-list{grid-template-columns:1fr}
       .achievement-list{grid-template-columns:repeat(3,1fr)}
+      .header-top{gap:8px}
+      h1{white-space:normal}
     }
   </style>
 </head>
-<body>
+<body class="dark-theme">
   <main class="app">
     <header>
       <div class="header-top">
+        <div style="width:40px; height:40px;"></div>
         <h1>Я тебя МОГНУ</h1>
         <button class="theme-toggle" id="theme-toggle" title="Переключить тему">🌙</button>
       </div>
       <div class="subtitle">кликни по персонажу — поймай ритм</div>
     </header>
+
     <section class="stats">
-      <div class="stat">
-        <small>могнов</small>
-        <strong id="money">0</strong>
-      </div>
-      <div class="stat">
-        <small>уровень</small>
-        <strong id="level">1</strong>
-      </div>
-      <div class="stat">
-        <small>в секунду</small>
-        <strong id="per-second">0</strong>
-      </div>
-      <div class="stat">
-        <small>достижения</small>
-        <strong id="achievement-count">0/10</strong>
-      </div>
+      <div class="stat"><small>могнов</small><strong id="money">0</strong></div>
+      <div class="stat"><small>уровень</small><strong id="level">1</strong></div>
+      <div class="stat"><small>в секунду</small><strong id="per-second">0</strong></div>
+      <div class="stat"><small>достижения</small><strong id="achievement-count">0/10</strong></div>
     </section>
+
     <section class="hero" id="hero" aria-label="Кликнуть по персонажу">
       <img class="character" id="character" alt="Персонаж уровня 1">
       <div class="hint" id="character-name">МОГНУ!</div>
     </section>
+
     <div class="progress-wrap">
       <div class="progress-label">
         <span id="progress-text">До следующего уровня</span>
@@ -457,21 +454,26 @@
       </div>
       <div class="progress"><i id="progress-bar"></i></div>
     </div>
+
     <div class="btn-group">
       <button class="btn" id="ad-btn">📺 x2 Доход на 30с</button>
       <button class="btn" id="daily-btn">🎁 Дневной бонус</button>
       <button class="btn" id="share-btn">📤 Поделиться</button>
     </div>
+
     <section class="upgrades">
       <h2>⬆️ Улучшения</h2>
       <div class="upgrade-list" id="upgrades-container"></div>
     </section>
+
     <section class="achievements-section">
       <h3>🏆 Достижения</h3>
       <div class="achievement-list" id="achievements-container"></div>
     </section>
+
     <div class="footer">Прогресс автосохраняется • Музыка включается при клике</div>
   </main>
+
   <div id="particles"></div>
   <audio id="music" loop preload="auto" src="assets/ya-tebya-mognu.mp3"></audio>
   <script src="https://yandex.ru/games/sdk/v2"></script>
